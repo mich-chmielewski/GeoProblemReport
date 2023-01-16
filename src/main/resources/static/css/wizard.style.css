@@ -1,0 +1,407 @@
+* :not(#map)> *{
+  box-sizing: border-box;
+}
+
+html, body, #smartwizard {
+  background-color: #fff;
+  position:absolute;
+  top:0; bottom:0; right:0; left:0;
+}
+
+.splash{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	z-index: 99999;
+	opacity:1;
+	height:100vh;
+	color:#000;
+	text-align:center;
+	background:url(/data/logo) center center no-repeat,white;
+	line-height:10vh;
+}
+
+.splash.display-none{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	opacity:0;
+	z-index: -100;
+	height:100vh;
+	background:white;
+	color:#000;
+	text-align:center;
+	transition: all 0.5s
+}
+      label{
+        cursor:pointer;
+      }
+      #imageName{
+        color:#000;
+      }
+
+      .label-btn {
+        background-color: #212529;
+        color: white;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        position: relative;
+        top:10px;
+      }
+
+
+#header{
+display: block;
+top: 0px;
+left: 0px;
+width: 100%;
+}
+
+#smartwizard {
+  background-color: #fff;
+  position:absolute;
+  top:40px; bottom:0; right:0; left:0;
+}
+#iframeDiv {
+  position:absolute;
+  top:40px; bottom:0; right:0; left:0;
+  overflow:hidden;
+}
+
+.error {
+	color: red;
+}
+
+.tablink {
+  background-color: #677380;
+  color: white;
+  float: left;
+  border-left: 1px solid #fff;
+  outline: none;
+  cursor: pointer;
+  font-size: 17px;
+  width: 50%;
+}
+
+.active {
+  background-color: #212529;
+}
+
+.tablink:hover {
+  background-color: #212529;
+}
+
+.sw > .tab-content {
+    position: none;
+    /*! overflow: hidden; */
+}
+
+.tab-style{
+	clear:both;
+    top: 45px;
+    bottom: 40px;
+    width:100%;
+	position:absolute;
+	overflow:hidden;
+}
+
+.tab-pane {
+	padding-right: 40px;
+	padding-left: 40px;
+	width:100%;
+	
+}
+.toolbar {
+	position:fixed;
+	bottom:0;
+	width:100%;
+}
+
+@media screen and (max-width: 640px) {
+
+	.tab-pane {
+		padding-right: 2px;
+		padding-left: 2px;
+	}
+
+	.wide{
+		padding:0;
+	}
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Verdana', sans-serif;
+  text-shadow: 0 0 3px #fff;
+}
+
+.tab-pane input,.tab-pane select {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+
+/*checkbox/*/
+input[type=checkbox]{
+    width: 1em;
+    font-size: inherit;
+    margin: 0;
+    transform: scale(1.5);
+}
+input[type=checkbox] + label:before{
+    position: absolute;
+    content: '';
+    left: -1.3em;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    margin: 0;
+    border:none;
+    border-radius: 10%;
+    background-color: #bbbbbb;
+}
+input[type=checkbox] + label:after{
+    position: absolute;
+    content: '';
+    left: -1.3em;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    margin: 0;
+    border: none;
+    background-color: white;
+    border-radius: 10%;
+    transform: scale(0.8);
+}
+/*checked*/
+input[type=checkbox]:checked + label:before{
+    position:absolute;
+    content:'';
+    left: -1.3em;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    margin: 0;
+    border: none;
+    background-color: #3b88fd;
+}
+input[type=checkbox]:checked + label:after{
+    position: absolute;
+    content: "\2713";
+    left: -1.3em;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    margin: 0;
+    border: none;
+    background-color: #3b88fd;
+    border-radius: 10%;
+    color: white;
+    text-align: center;
+    line-height: 1;
+}
+/*focused*/
+input[type=checkbox]:focus + label:before{
+    border: 0.1em solid #8eb9fb;
+    margin-top: -0.1em;
+    margin-left: -0.1em;
+    box-shadow: 0 0 0.2em #3b88fd;
+}
+
+#map input{
+	width: auto;
+}
+
+textarea {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+textarea.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+button {
+    color: #ffffff;
+    background-color: #212529;
+    border: 1px solid #212529;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+.btn-file {
+  background-color: #04AA6D;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+
+#img-upload{
+    width: 50%;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #04AA6D;
+}
+
+.alert {
+  padding: 20px;
+  margin: auto;
+  background-color: #fff;
+  border-left: 18px solid #f44336;
+  display:none;
+  position:fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 10px 10% 10px 10%;
+  z-index:9999;
+  border-radius:10px;
+  box-shadow: 10px 10px 5px gray;
+}
+
+.info {
+  padding: 20px;
+  background-color: #fff;
+  border-left: 18px solid #2196F3;
+  display:none;
+  position:fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index:9999;
+  border-radius:10px;
+  margin: 10px 10% 10px 10%;
+  height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 10px 10px 5px gray;
+}
+
+.showModal{
+  opacity:1;
+  animation: show .2s;
+  transform: scale(1);
+}
+@keyframes show {
+  from{
+
+    transform: scale(0);
+        opacity:0;
+          z-index:-1;
+      } to{
+
+    transform: scale(1);
+        opacity: 1;
+          z-index:2;
+      }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .info {
+      padding: 10px;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin: 5px 5px 5px 5px;
+  }
+}
+
+
+.closebtn {
+  font-weight: bold;
+  float: right;
+  font-size: 32px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0px 10px 10px 10px;
+}
+
+.closebtn:hover {
+  color: red;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+
+.legend {
+	text-align: left;
+	line-height: 18px;
+	color: #555;
+}
+.legend i {
+	width: 18px;
+	height: 18px;
+	float: left;
+	margin-right: 8px;
+	opacity: 0.7;
+	clear:both;
+}
+
+.leaflet-control-attribution{
+line-height: 1;
+}
+
+.logo{
+	margin-bottom: 20px;
+}
+
+.leaflet-legend-item i {
+    display: inline-block;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    vertical-align: middle;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zgłoszenie przestrzenne</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="./css/smart_wizard_all.css">
+    <link rel="stylesheet" href="./map/css/leaflet.css" />
+	<link rel="stylesheet" href="./map/css/l.control.locate.min.css"/>
+	<link rel="stylesheet" href="./map/css/leaflet.home.css" />
+	<link rel="stylesheet" href="./map/css/leaflet-search.css" />
+	<link rel="stylesheet" href="./map/css/leaflet.legend.css" />
+    <link rel="stylesheet" href="./css/wizard.style.css">
+    <style>
+	</style>
+
+</head>
+<body>
+<div class="splash">
+    <h1 class="fade-in">Zgłoszenie Przestrzenne <br /><span th:text="${settings[__${'company_name'}__]}"></span></h1>
+</div>
+<div class="alert">
+    <span class="closebtn" onclick="closeAlert()">&times;</span>
+    <strong>Uwaga!</strong><p th:text="${error}"></p>
+</div>
+<div class="info">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+	<p th:utext="${settings[__${'company_rodo_info'}__]}"></p>
+    <button class="btn btn-info" onclick="this.parentElement.style.display='none';return false;">Zamknij</button>
+</div>
+<div id="header">
+<button class="tablink active" onclick="openTab('formTab')" id="formBtn">Zgłoszenie</button>
+<button class="tablink" onclick="openTab('mapTab')" id="mapBtn">Mapa zgłoszeń</button>
+</div>
+<div id="iframeDiv" style="display:none;">
+<iframe id="mapIframe" src="about:blank" style="overflow:hidden;height:100%;width:100%;border: 0;cursor: pointer;" height="100%" width="100%">
+</iframe>
+</div>
+<div id="smartwizard">
+    <ul class="nav">
+        <li>
+            <a class="nav-link" style="text-align: center;" href="#step-1">
+                <img style="vertical-align:middle" src="css/map.svg" alt="map icon"> 
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-2">
+                 <img style="vertical-align:middle" src="css/message.svg" alt="message icon"> 
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-3">
+                <img style="vertical-align:middle" src="css/camera.svg" alt="camera icon"> 
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-4">
+                <img style="vertical-align:middle" src="css/check.svg" alt="accept icon"> 
+            </a>
+        </li>
+    </ul>
+<form id="reportForm" action="#" th:action="@{/}" th:object="${report}" method="post">
+    <div class="tab-content">
+        <div id="step-1" class="tab-pane tab-style" role="tabpanel">
+            <div id="map"></div>
+            <input placeholder="Lat..." name="lat" id="lat" type="hidden" autocomplete="false">
+            <input placeholder="Lon..." name="lon" id="lon" type="hidden" autocomplete="false">
+        </div>
+        <div id="step-2" class="tab-pane tab-style" role="tabpanel">
+            <p><select th:name="reportType" oninput="this.className = ''" required>
+                <option value="" th:disabled="disabled" th:selected="selected">Wybierz...</option>
+                <option th:each="reportType : ${reportTypes}" th:value="${reportType.id}"
+                        th:text="${reportType.description}"></option>
+            </select></p>
+            <p><textarea placeholder="Opis..." oninput="this.className = ''" th:field="*{message}" id="description" rows="5" required></textarea></p>
+        </div>
+        <div id="step-3" class="tab-pane tab-style" role="tabpanel">
+            <!--<input type="file" id="imgInp" accept="image/*">-->
+            <label for="imgInp" class="label-btn">
+                <img style="vertical-align:middle" src="css/camera.svg" alt="camera icon"> Dodaj Zdjęcie
+                <input type="file" id="imgInp" accept="image/*" style="display: none;">
+                <span id="imageName"></span>
+            </label>
+            <br/>
+            <input id="imgBase64" type="hidden" name="photo" >
+            <!--<img id='img-upload'/>-->
+        </div>
+        <div id="step-4" class="tab-pane tab-style" role="tabpanel">
+            <p><input placeholder="Adres email..." oninput="this.className = ''" type="email" th:field="*{email}"></p>
+            <p><label><input type="checkbox" id="terms" name="terms" required> Przeczytałem i wyrażam zgodę na</label> <a href="#" onclick="document.getElementsByClassName('info')[0].style.display='block';return false;">przetwarzanie moich danych osobowych</a></p>
+        </div>
+    </div>
+</form>
+</div>
+<script type="text/javascript" charset="UTF-8" src="./js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./js/jquery.smartWizard.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./map/js/leaflet/leaflet.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./map/js/leaflet-wmts-geoportal.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./map/js/l.control.locate.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./map/js/leaflet.home.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./map/js/leaflet-search.js"></script>
+<script type="text/javascript" charset="UTF-8" src="./map/js/leaflet.legend.js"></script>
+<script type="text/javascript" charset="UTF-8" src='https://unpkg.com/@turf/turf/turf.min.js'></script>
+<script type="text/javascript" charset="UTF-8" src="./js/wizard.settings.js"></script>
+</body>
+</html>

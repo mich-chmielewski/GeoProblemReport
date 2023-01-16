@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Map</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<meta name="format-detection" content="telephone=no">
+	<link rel="icon" href="data/favicon.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="./css/leaflet.css" />
+	<link rel="stylesheet" href="./css/l.control.locate.min.css"/>
+	<link rel="stylesheet" href="./css/leaflet.home.css" />
+	<link rel="stylesheet" href="./css/leaflet-search.css" />
+	<link rel="stylesheet" href="./css/leaflet.legend.css" />
+	<style>
+	html { height:100%; }
+	body { position:absolute; top:0; bottom:0; right:0; left:0; }
+
+			.logo {
+				text-align: left;
+				line-height: 75px;
+				color: #555;
+			}
+			.logo i {
+				width: 75px;
+				height: 75px;
+				float: left;
+				margin-left: 2px;
+				opacity: 1;
+			}
+	</style>
+	
+</head>
+<body>
+	<div id="map" style="height:100%; width:100%;"></div>
+	<!-- JS -->
+	<script type="text/javascript" charset="UTF-8" src="./js/leaflet/leaflet.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://unpkg.com/proj4leaflet@1.0.2/lib/proj4-compressed.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="./js/l.control.locate.min.js" ></script>
+	<script type="text/javascript" charset="UTF-8" src="./js/leaflet-wmts-geoportal.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="./js/leaflet.home.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="./js/leaflet-search.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="./js/leaflet.legend.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="./js/leaflet-hash.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="./js/form.map.settings.js"></script>
+</body>
+</html>

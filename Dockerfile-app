@@ -1,0 +1,6 @@
+FROM openjdk:11
+WORKDIR /srv
+
+COPY problem-report-0.0.1-SNAPSHOT.jar /srv/problem-report-0.0.1-SNAPSHOT.jar
+
+CMD ["java","-jar","/srv/problem-report-0.0.1-SNAPSHOT.jar"]

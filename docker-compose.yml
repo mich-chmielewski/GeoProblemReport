@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  pgdb:
+    image: postgres:14.1-alpine
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=problem
+    ports:
+      - '5432:5432'
+  web:
+    container_name: problem
+    image: problemapp
+    build:
+      dockerfile: Dockerfile-app
+      context: .
+    volumes:
+      - ./app_data:/srv/app_data
+    depends_on:
+      - pgdb
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=pg
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgdb:5432/problem
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+volumes:
+  pg_data:
+  app_data:

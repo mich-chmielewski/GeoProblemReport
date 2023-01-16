@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>Reset hasła</title>
+    <link rel="stylesheet" href="./css/login.style.css">
+</head>
+<body>
+<div class="container-login100">
+    <div class="wrap-login100 p-t-50 p-b-90 p-l-50 p-r-50">
+        <form class="login100-form flex-sb flex-w" action="reset" method="post" autocomplete="off">
+                <span class="login100-form-title" style="margin-bottom: 0px;">
+                    <a href="" target="_self">
+                        <img src="./data/logo" alt="Logo jednostki" width="50px">
+                    </a>
+                </span>
+            <span class="login100-form-title" th:text="${settings[__${'company_name'}__]}"></span>
+            <div th:if="${info}" th:text="${info}">
+            </div>
+            <div class="wrap-input100 m-b-16">
+                <input class="input100" name="usermail" id="usermail" type="email" placeholder="Adres e-mail"
+                       autocomplete="off" required>
+                <span class="focus-input100"></span>
+            </div>
+            <div class="container-login100-form-btn m-t-17">
+                <div class="w-full beforeNone text-center">
+                    <input type="submit" class="nv-login-submit login100-form-btn" name="submit" value="Odzyskaj dostęp"
+                           alt="Odzyskaj dostęp">
+                </div>
+            </div>
+            <div class="container-login100-form-btn m-t-17">
+                <div class="w-full beforeNone text-center">
+                    <input class="nv-login-submit login100-form-btn" type="button" value="Anuluj" alt="Anuluj"
+                           title="Anuluj" onclick="last_location();">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type='text/javascript'>
+		function last_location() {
+			window.location = '/login';
+		}
+</script>
+</body>
+</html>

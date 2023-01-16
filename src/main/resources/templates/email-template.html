@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Zgłoszenie przestrzenne - informację</title>
+    <style>
+body {
+  font-family: Arial;
+}
+
+h1 img {float:left;margin:0 5px 0 0}
+h1{display:inline;line-height: 50px;}
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #212529;
+}
+
+.button:hover {
+    background-color: #677380;
+}
+
+.coupon {
+  border: 5px dotted #bbb;
+  width: 80%;
+  border-radius: 15px;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.container {
+  padding: 2px 16px;
+  background-color: #f1f1f1;
+}
+
+</style>
+</head>
+<body>
+
+<div class="coupon">
+    <div class="container">
+        <h1 th:text="${companyName}"><img th:src="${baseUrl} + '/data/logo'" alt="Logo" height="50"></h1>
+    </div>
+    <div th:if="${commentDTO != null}" class="container" style="background-color: #FFF5EE;">
+        <p><strong><span th:text="${'Komentarz: ' + commentDTO.content}"></span></strong></p>
+    </div>
+    <div class="container" style="background-color:white">
+        <h3><b><span th:text="${'Zgłoszenie nr: ' + reportDTO.id}"></span></b></h3>
+        <p><strong>Informację dotyczące zgłoszenia!</strong></p>
+        <p><strong><span th:text="${'Aktualny status: ' + reportDTO.getReportStatusDTO.getDescription}"></span></strong></p>
+        <p><span th:text="${'Typ zgłoszenia: ' + reportDTO.getreportTypeDTO().getDescription()}"></span></p>
+        <p><span th:text="${'Opis: ' +reportDTO.message}"></span></p>
+        <p style="text-align:center;"><a class="button" style="color:white;" th:href="${baseUrl} + '/index.html?search='+ ${reportDTO.id}">Mapa</a></p>
+        <p style="text-align:center;"><a class="button" style="color:white;" th:href="${baseUrl} + '/unregister/'+ ${removeEmail}">Usuń swój adres email z systemu!</a></p>
+    </div>
+    <div class="container">
+        <p><span th:text="${'Lat: ' + reportDTO.lat}"></span>&nbsp;<span th:text="${'Lon:' + reportDTO.lon}"></span></p>
+    </div>
+
+</div>
+
+</body>
+</html>
